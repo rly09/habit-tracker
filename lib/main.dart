@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:habittracker/database/habit_database.dart';
-import 'package:habittracker/pages/home_page.dart';
-import 'package:habittracker/theme/theme_provider.dart';
+import 'package:habitus/database/habit_database.dart';
+import 'package:habitus/pages/home_page.dart';
+import 'package:habitus/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      title: 'HABITUS',
       home: HomePage(),
       theme: Provider.of<ThemeProvider>(context).themeData,
     );

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:habittracker/components/my_drawer.dart';
-import 'package:habittracker/components/my_habit_tile.dart';
-import 'package:habittracker/components/my_heat_map.dart';
-import 'package:habittracker/database/habit_database.dart';
+import 'package:habitus/components/my_drawer.dart';
+import 'package:habitus/components/my_habit_tile.dart';
+import 'package:habitus/components/my_heat_map.dart';
+import 'package:habitus/database/habit_database.dart';
+import 'package:habitus/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 import '../models/habit.dart';
 import '../utils/habit_util.dart';
@@ -19,6 +20,12 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     Provider.of<HabitDatabase>(context, listen: false).readHabits();
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    Provider.of<ThemeProvider>(context, listen: false).initializeSystemTheme(context);
   }
 
   final TextEditingController textController = TextEditingController();
@@ -126,7 +133,7 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: createNewHabit,
         elevation: 0,
-        backgroundColor: Theme.of(context).colorScheme.tertiary,
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         child: Icon(Icons.add),
       ),
       body: ListView(children: [_buildHeatMap(), _buildHabitList()]),

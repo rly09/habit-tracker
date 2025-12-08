@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:habittracker/models/app_settings.dart';
-import 'package:habittracker/models/habit.dart';
+import 'package:habitus/models/app_settings.dart';
+import 'package:habitus/models/habit.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
