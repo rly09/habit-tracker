@@ -101,15 +101,6 @@ habit-tracker/
 
 ---
 
-## 📱 Screenshots
-
-<!-- Add screenshots here -->
-| Home Screen | Habit Details | Progress | Settings |
-|:---:|:---:|:---:|:---:|
-| ![Home](assets/screenshots/home.png) | ![Details](assets/screenshots/details.png) | ![Progress](assets/screenshots/progress.png) | ![Settings](assets/screenshots/settings.png) |
-
----
-
 ## 🎮 Usage
 
 ### Creating a Habit
@@ -174,7 +165,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Rhythm Arora** ([@rly09](https://github.com/rly09))
 
 - GitHub: [@rly09](https://github.com/rly09)
-- Email: [your-email@example.com]
+- Email: [yogiroshan2005@gmail.com]
 
 ---
 
@@ -194,4 +185,4 @@ Have questions? Feel free to open an issue or start a discussion.
 
 ---
 
-**Made with ❤️ by Rhythm Arora**
+**Made with ❤️ by Roshan Lal Yogi**
