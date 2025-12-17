@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:habitus/theme/app_colors.dart';
 
 class MyHabitTile extends StatelessWidget {
   final String text;
@@ -20,22 +21,24 @@ class MyHabitTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 25),
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
       child: Slidable(
         endActionPane: ActionPane(
-          motion: StretchMotion(),
+          motion: const StretchMotion(),
           children: [
             SlidableAction(
               onPressed: editHabit,
               backgroundColor: Colors.grey.shade800,
-              icon: Icons.settings,
+              icon: Icons.edit,
               borderRadius: BorderRadius.circular(12),
+              padding: EdgeInsets.zero,
             ),
             SlidableAction(
               onPressed: deleteHabit,
-              backgroundColor: Colors.red,
+              backgroundColor: AppColors.error,
               icon: Icons.delete,
               borderRadius: BorderRadius.circular(12),
+              padding: EdgeInsets.zero,
             ),
           ],
         ),
@@ -45,28 +48,61 @@ class MyHabitTile extends StatelessWidget {
               onChanged!(!isCompleted);
             }
           },
-          child: Container(
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
             decoration: BoxDecoration(
               color: isCompleted
-                  ? Colors.green
-                  : Theme.of(context).colorScheme.secondary,
-              borderRadius: BorderRadius.circular(12),
+                  ? AppColors.success.withOpacity(0.15)
+                  : Theme.of(context).cardTheme.color,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: isCompleted ? AppColors.success : Theme.of(context).colorScheme.outline.withOpacity(0.1),
+                width: 1.5,
+              ),
+              boxShadow: [
+                if (!isCompleted)
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.03),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
+                  ),
+              ],
             ),
-            padding: EdgeInsets.all(12),
-            child: ListTile(
-              title: Text(
-                text,
-                style: TextStyle(
-                  color: isCompleted
-                      ? Colors.white
-                      : Theme.of(context).colorScheme.inversePrimary,
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              children: [
+                // Checkbox implementation
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  height: 28,
+                  width: 28,
+                  decoration: BoxDecoration(
+                    color: isCompleted ? AppColors.success : Colors.transparent,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(
+                      color: isCompleted ? AppColors.success : Colors.grey.shade400,
+                      width: 2,
+                    ),
+                  ),
+                  child: isCompleted
+                      ? const Icon(Icons.check, size: 18, color: Colors.white)
+                      : null,
                 ),
-              ),
-              leading: Checkbox(
-                value: isCompleted,
-                onChanged: onChanged,
-                activeColor: Colors.green,
-              ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Text(
+                    text,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: isCompleted
+                          ? Colors.grey.shade500
+                          : Theme.of(context).colorScheme.onSurface,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
