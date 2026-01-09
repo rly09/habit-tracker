@@ -5,6 +5,7 @@ import 'package:habitus/database/app_database.dart';
 import 'package:habitus/theme/app_colors.dart';
 import 'package:habitus/theme/theme_provider.dart';
 import 'package:habitus/utils/habit_util.dart';
+import 'package:habitus/services/widget_service.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -133,6 +134,11 @@ class _HomePageState extends State<HomePage> {
         builder: (context, snapshotEntries) {
           final allEntries = snapshotEntries.data ?? [];
           final heatMapData = prepHeatMapDataset(allEntries);
+
+          // Update widget whenever heatmap data changes
+          if (snapshotEntries.hasData) {
+            WidgetService.updateWidget(heatMapData);
+          }
 
           return StreamBuilder<List<Habit>>(
             stream: database.watchAllHabits(),

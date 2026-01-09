@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_title">Habit Heatmap</string>
+    <string name="widget_description">View your habit completion heatmap</string>
+</resources>

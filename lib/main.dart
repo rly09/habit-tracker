@@ -3,6 +3,7 @@ import 'package:habitus/database/app_database.dart';
 import 'package:habitus/pages/home_page.dart';
 import 'package:habitus/theme/app_theme.dart';
 import 'package:habitus/theme/theme_provider.dart';
+import 'package:habitus/services/widget_service.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -15,6 +16,9 @@ void main() async {
       await database.updateFirstLaunchDate(DateTime.now());
     }
   });
+
+  // Initialize home widget
+  await WidgetService.initialize();
 
   runApp(
     MultiProvider(
